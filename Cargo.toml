@@ -2,7 +2,15 @@
 name = "lucr"
 version = "0.1.0"
 edition = "2021"
+authors = ["Narazaki Shuji <shujinarazaki@protonmail.com>"]
+description = "Convert latex math commands to unicode symbols"
+license = "MPL-2.0"
+readme = "README.md"
+repository = "https://github.com/shnarazk/lucr"
+homepage = "https://github.com/shnarazk/lucr"
+keywords = ["latex", "lean4", "text"]
+# categories = ["text", "utility"]
+rust-version = "1.83"
 
 [dependencies]
-rayon = "1.10.0"
-winnow = "0.6.22"
+rayon = "^1.10"
