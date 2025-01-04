@@ -178,14 +178,34 @@ fn unlatex(table: &HashMap<String, String>, s: String) -> String {
 }
 
 fn latex_to_unicode(table: &HashMap<String, String>, s: &str) -> String {
-    if let Some(i) = s
+    dbg!(s);
+    let i = s
         .chars()
         .position(|c| [' ', '\t', '(', '{', '[', '\n'].contains(&c))
-    {
-        let keyword = &s[0..i];
-        if let Some(get) = table.get(keyword) {
-            return format!("{}{}", get, &s[i..]);
-        }
+        .unwrap_or(s.len().min(7));
+    let keyword = dbg!(&s[0..i]);
+    if let Some((len, symbol)) = lookup(table, keyword) {
+        return format!("{}{}", symbol, &s[len..]);
+        // } else if let Some(c) = s.chars().next() {
+        //     if !c.is_alphabetic() {
+        //         if let Some(j) = s.chars().position(|c| c.is_alphabetic()) {
+        //             let keyword1 = &s[0..j];
+        //             dbg!(keyword1);
+        //             if let Some(symbol) = lookup(table, keyword1) {
+        //                 return format!("{}{}", symbol, &s[i..]);
+        //             }
+        //         }
+        //     }
     }
     s.to_string()
+}
+
+fn lookup<'a>(table: &'a HashMap<String, String>, key: &str) -> Option<(usize, &'a String)> {
+    let mut res = None;
+    for i in 1..key.len() {
+        if let Some(symbol) = table.get(&key[0..i]) {
+            res = Some((i, dbg!(symbol)));
+        }
+    }
+    res
 }
