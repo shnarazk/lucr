@@ -7,7 +7,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
-const TABLE: [(&'static str, &'static str); 109] = [
+const TABLE: [(&str, &str); 110] = [
     // greek letters
     ("alpha", "α"),
     ("beta", "β"),
@@ -44,7 +44,6 @@ const TABLE: [(&'static str, &'static str); 109] = [
     ("Psi", "Ψ"),
     ("omega", "ω"),
     ("Omega", "Ω"),
-    ("zeta", "ζ"),
     // stand? or bold
     ("C", "ℂ"),
     ("N", "ℕ"),
@@ -100,6 +99,8 @@ const TABLE: [(&'static str, &'static str); 109] = [
     (">", "⟩"),
     ("<<", "⟪"),
     (">>", "⟫"),
+    ("f<<", "«"),
+    ("f>>", "»"),
     // arrows
     ("l", "←"),
     ("r", "→"),
@@ -133,9 +134,6 @@ fn main() {
         .iter()
         .map(|(k, v)| (k.to_string(), v.to_string()))
         .collect::<HashMap<_, _>>();
-    let Some(out_filename) = env::args().nth(1) else {
-        return;
-    };
     // dbg!(&out_filename);
     let mut contents = String::new();
     io::stdin()
@@ -155,13 +153,16 @@ fn main() {
         .map(|s| unlatex(&table, s))
         .collect::<String>();
     print!("{gathered}");
-    dump_to(&out_filename, gathered);
+    #[cfg(feature = "write_back")]
+    if let Some(out_filename) = env::args().nth(1) {
+        dump_to(&out_filename, gathered);
+    };
 }
 
 #[allow(dead_code)]
 fn dump_to<S: AsRef<str>>(path: &str, contents: S) {
     let mut file = if !Path::new(path).exists() {
-        File::create(&path).unwrap_or_else(|_| panic!("fail to open {path}"))
+        File::create(path).unwrap_or_else(|_| panic!("fail to open {path}"))
     } else {
         OpenOptions::new()
             .write(true)

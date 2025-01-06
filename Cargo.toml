@@ -14,3 +14,7 @@ rust-version = "1.83"
 
 [dependencies]
 rayon = "^1.10"
+
+[features]
+default = []
+write_back = []
