@@ -7,7 +7,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
-const TABLE: [(&str, &str); 110] = [
+const TABLE: [(&str, &str); 115] = [
     // greek letters
     ("alpha", "α"),
     ("beta", "β"),
@@ -112,20 +112,25 @@ const TABLE: [(&str, &str); 110] = [
     ("exists", "∃"),
     ("not", "¬"),
     // binary operators
-    ("in", "∈"),
-    ("notin", "∉"),
-    ("=", "≠"),
-    ("time", "×"),
-    ("cup", "∪"),
-    ("cap", "∩"),
-    ("sub", "⊆"),
-    ("sup", "⊔"),
-    ("inf", "⊓"),
-    ("u+", "⊎"),
     ("and", "∧"),
-    ("or", "∨"),
+    ("cap", "∩"),
+    ("comp", "∘"),
+    ("cup", "∪"),
     ("ge", "≥"),
+    ("in", "∈"),
+    ("inf", "⊓"),
     ("le", "≤"),
+    ("notin", "∉"),
+    ("or", "∨"),
+    ("pm", "±"),
+    ("prec", "≺"),
+    ("preceq", "≼"),
+    ("subseq", "⊆"),
+    ("sup", "⊔"),
+    ("supset", "⊇"),
+    ("time", "×"),
+    ("u+", "⊎"),
+    ("=", "≠"),
     ("|", "∣"),
 ];
 
