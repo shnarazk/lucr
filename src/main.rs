@@ -210,16 +210,24 @@ fn latex_to_unicode(table: &HashMap<String, String>, s: &str) -> String {
         //         }
         //     }
     }
-    s.to_string()
+    format!("\\{s}")
 }
 
 fn lookup<'a>(table: &'a HashMap<String, String>, key: &str) -> Option<(usize, &'a String)> {
     let mut s = key.to_string();
+    let mut was_alpha = false;
     while !s.is_empty() {
         if let Some(symbol) = table.get(&s) {
             return Some((s.len(), symbol));
         }
-        s.pop();
+        if let Some(c) = s.pop() {
+            if c.is_ascii_alphabetic() {
+                if was_alpha {
+                    return None;
+                }
+                was_alpha = true;
+            }
+        }
     }
     None
 }
