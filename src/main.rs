@@ -7,10 +7,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
-const TABLE: [(&str, &str); 112] = [
-    // escape chars
-    ("n", "\\n"),
-    ("t", "\\t"),
+const TABLE: [(&str, &str); 110] = [
     // greek letters
     ("alpha", "α"),
     ("beta", "β"),
