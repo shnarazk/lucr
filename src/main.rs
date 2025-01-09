@@ -151,7 +151,7 @@ fn main() {
         .map(|(i, s)| {
             let cnv = unlatex(&table, s.to_string());
             if i == 0 {
-                format!("{cnv}")
+                cnv.to_string()
             } else {
                 format!("\\\\{cnv}")
             }
