@@ -149,13 +149,14 @@ fn main() {
         .iter()
         .enumerate()
         .map(|(i, s)| {
+            let cnv = unlatex(&table, s.to_string());
             if i == 0 {
-                s.to_string()
+                format!("{cnv}")
             } else {
-                format!("\\\\:star::{s}")
+                format!("\\\\{cnv}")
             }
         })
-        .map(|s| unlatex(&table, s))
+        // .map(|s| unlatex(&table, s))
         .collect::<String>();
     print!("{gathered}");
     #[cfg(feature = "write_back")]
