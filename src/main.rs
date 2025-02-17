@@ -7,7 +7,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
-const TABLE: [(&str, &str); 124] = [
+const TABLE: [(&str, &str); 125] = [
     // greek letters
     ("alpha", "α"),
     ("beta", "β"),
@@ -67,6 +67,7 @@ const TABLE: [(&str, &str); 124] = [
     ("cdots", "⋯"),
     (".", "·"),
     ("empty", "∅"),
+    ("infty", "∞"),
     // superscript
     ("^0", "⁰"),
     ("^1", "¹"),
