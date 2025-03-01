@@ -7,7 +7,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
-const TABLE: [(&str, &str); 167] = [
+const TABLE: [(&str, &str); 168] = [
     // greek letters
     ("alpha", "α"),
     ("beta", "β"),
@@ -185,6 +185,7 @@ const TABLE: [(&str, &str); 167] = [
     ("u+", "⊎"),
     ("=", "≠"),
     ("|", "∣"),
+    ("cong", "≅"),
 ];
 
 fn main() {
