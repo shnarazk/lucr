@@ -2,12 +2,12 @@
 use std::{
     collections::HashMap,
     env, fmt,
-    fs::{self, exists, File, OpenOptions},
+    fs::{self, File, OpenOptions, exists},
     io::{self, prelude::*},
     path::{Path, PathBuf},
 };
 
-const TABLE: [(&str, &str); 168] = [
+const TABLE: [(&str, &str); 169] = [
     // greek letters
     ("alpha", "α"),
     ("beta", "β"),
@@ -68,6 +68,7 @@ const TABLE: [(&str, &str); 168] = [
     (".", "·"),
     ("empty", "∅"),
     ("infty", "∞"),
+    ("top", "⊤"),
     // superscript
     ("^0", "⁰"),
     ("^1", "¹"),
