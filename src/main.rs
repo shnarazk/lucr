@@ -206,7 +206,7 @@ const TABLE: [(&str, &str); 183] = [
 fn main() {
     let table: HashMap<String, String> = TABLE
         .iter()
-        .map(|(k, v)| (k.to_string(), v.to_string()))
+        .map(|(k, v)| ((*k).to_string(), (*v).to_string()))
         .collect::<HashMap<_, _>>();
     // dbg!(&out_filename);
     let mut contents = String::new();
@@ -218,7 +218,7 @@ fn main() {
         .iter()
         .enumerate()
         .map(|(i, s)| {
-            let cnv = unlatex(&table, s.to_string());
+            let cnv = unlatex(&table, s);
             if i == 0 {
                 cnv.to_string()
             } else {
@@ -236,21 +236,21 @@ fn main() {
 
 #[allow(dead_code)]
 fn dump_to<S: AsRef<str>>(path: &str, contents: S) {
-    let mut file = if !Path::new(path).exists() {
-        File::create(path).unwrap_or_else(|_| panic!("fail to open {path}"))
-    } else {
+    let mut file = if Path::new(path).exists() {
         OpenOptions::new()
             .write(true)
             .truncate(true)
             .open(path)
             .unwrap_or_else(|_| panic!("fail to open {path}"))
+    } else {
+        File::create(path).unwrap_or_else(|_| panic!("fail to open {path}"))
     };
     let Ok(()) = file.write_all(contents.as_ref().as_bytes()) else {
         panic!();
     };
 }
 
-fn unlatex(table: &HashMap<String, String>, s: String) -> String {
+fn unlatex(table: &HashMap<String, String>, s: &str) -> String {
     s.split('\\')
         .enumerate()
         .map(|(i, s)| {
