@@ -7,7 +7,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
-const TABLE: [(&str, &str); 236] = [
+const TABLE: [(&str, &str); 237] = [
     // italic alphabet
     ("MiA", "𝐴"),
     ("MiB", "𝐵"),
@@ -250,6 +250,7 @@ const TABLE: [(&str, &str); 236] = [
     ("subseq", "⊆"),
     ("sup", "⊔"),
     ("supset", "⊇"),
+    ("t", "▸"),
     ("time", "×"),
     ("u+", "⊎"),
     ("=", "≠"),
