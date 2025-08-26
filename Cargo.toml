@@ -13,7 +13,7 @@ keywords = ["latex", "lean4", "text"]
 rust-version = "1.85"
 
 [dependencies]
-rayon = "^1.10"
+rayon = "^1.11"
 
 [features]
 default = []
