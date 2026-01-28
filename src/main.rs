@@ -1,7 +1,8 @@
 #![allow(unused_imports)]
+use clap::Parser;
 use std::{
     collections::HashMap,
-    env, fmt,
+    fmt,
     fs::{self, File, OpenOptions, exists},
     io::{self, prelude::*},
     path::{Path, PathBuf},
@@ -259,7 +260,32 @@ const TABLE: [(&str, &str); 238] = [
     ("div", "÷"),
 ];
 
+/// Convert LaTeX math commands to Unicode symbols
+#[derive(Parser, Debug)]
+#[command(version, about, long_about = None)]
+struct Cli {
+    /// Display the conversion table
+    #[arg(long, conflicts_with = "file")]
+    dump: bool,
+
+    /// Output filename (requires write_back feature to be enabled)
+    #[arg(value_name = "FILE", conflicts_with = "dump")]
+    file: Option<String>,
+}
+
 fn main() {
+    let cli = Cli::parse();
+
+    // If --dump flag is provided, display the conversion table
+    if cli.dump {
+        println!("LaTeX to Unicode Conversion Table:");
+        println!("{:-<60}", "");
+        for (latex, unicode) in &TABLE {
+            println!("{:<20} -> {}", latex, unicode);
+        }
+        return;
+    }
+
     let table: HashMap<String, String> = TABLE
         .iter()
         .map(|(k, v)| ((*k).to_string(), (*v).to_string()))
@@ -285,7 +311,7 @@ fn main() {
         .collect::<String>();
     print!("{gathered}");
     #[cfg(feature = "write_back")]
-    if let Some(out_filename) = env::args().nth(1) {
+    if let Some(out_filename) = cli.file {
         dump_to(&out_filename, gathered);
     };
 }
