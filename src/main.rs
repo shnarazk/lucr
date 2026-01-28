@@ -2,7 +2,7 @@
 use clap::Parser;
 use std::{
     collections::HashMap,
-    env, fmt,
+    fmt,
     fs::{self, File, OpenOptions, exists},
     io::{self, prelude::*},
     path::{Path, PathBuf},
@@ -265,11 +265,11 @@ const TABLE: [(&str, &str); 238] = [
 #[command(version, about, long_about = None)]
 struct Cli {
     /// Display the conversion table
-    #[arg(long)]
+    #[arg(long, conflicts_with = "file")]
     dump: bool,
 
-    /// Output filename (only used with write_back feature)
-    #[arg(value_name = "FILE")]
+    /// Output filename (requires write_back feature to be enabled)
+    #[arg(value_name = "FILE", conflicts_with = "dump")]
     file: Option<String>,
 }
 
