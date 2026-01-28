@@ -267,6 +267,10 @@ struct Cli {
     /// Display the conversion table
     #[arg(long)]
     dump: bool,
+
+    /// Output filename (only used with write_back feature)
+    #[arg(value_name = "FILE")]
+    file: Option<String>,
 }
 
 fn main() {
@@ -307,7 +311,7 @@ fn main() {
         .collect::<String>();
     print!("{gathered}");
     #[cfg(feature = "write_back")]
-    if let Some(out_filename) = env::args().nth(1) {
+    if let Some(out_filename) = cli.file {
         dump_to(&out_filename, gathered);
     };
 }
