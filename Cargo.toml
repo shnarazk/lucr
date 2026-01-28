@@ -13,6 +13,7 @@ keywords = ["latex", "lean4", "text"]
 rust-version = "1.85"
 
 [dependencies]
+clap = { version = "4.5", features = ["derive"] }
 rayon = "^1.11"
 
 [features]

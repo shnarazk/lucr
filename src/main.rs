@@ -1,4 +1,5 @@
 #![allow(unused_imports)]
+use clap::Parser;
 use std::{
     collections::HashMap,
     env, fmt,
@@ -259,7 +260,28 @@ const TABLE: [(&str, &str); 238] = [
     ("div", "÷"),
 ];
 
+/// Convert LaTeX math commands to Unicode symbols
+#[derive(Parser, Debug)]
+#[command(version, about, long_about = None)]
+struct Cli {
+    /// Display the conversion table
+    #[arg(long)]
+    dump: bool,
+}
+
 fn main() {
+    let cli = Cli::parse();
+
+    // If --dump flag is provided, display the conversion table
+    if cli.dump {
+        println!("LaTeX to Unicode Conversion Table:");
+        println!("{:-<60}", "");
+        for (latex, unicode) in &TABLE {
+            println!("{:<20} -> {}", latex, unicode);
+        }
+        return;
+    }
+
     let table: HashMap<String, String> = TABLE
         .iter()
         .map(|(k, v)| ((*k).to_string(), (*v).to_string()))
