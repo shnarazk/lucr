@@ -14,7 +14,7 @@ rust-version = "1.85"
 
 [dependencies]
 clap = { version = "4.6", features = ["derive"] }
-rayon = "^1.11"
+rayon = "^1.12"
 
 [features]
 default = []
