@@ -374,13 +374,13 @@ fn lookup<'a>(table: &'a HashMap<String, String>, key: &str) -> Option<(usize, &
         if let Some(symbol) = table.get(&s) {
             return Some((s.len(), symbol));
         }
-        if let Some(c) = s.pop() {
-            if c.is_ascii_alphabetic() {
-                if was_alpha {
-                    return None;
-                }
-                was_alpha = true;
+        if let Some(c) = s.pop()
+            && c.is_ascii_alphabetic()
+        {
+            if was_alpha {
+                return None;
             }
+            was_alpha = true;
         }
     }
     None

@@ -10,7 +10,7 @@ repository = "https://github.com/shnarazk/lucr"
 homepage = "https://github.com/shnarazk/lucr"
 keywords = ["latex", "lean4", "text"]
 # categories = ["text", "utility"]
-rust-version = "1.85"
+rust-version = "1.95"
 
 [dependencies]
 clap = { version = "4.6", features = ["derive"] }
