@@ -260,7 +260,7 @@ const TABLE: [(&str, &str); 238] = [
     ("div", "÷"),
 ];
 
-/// Convert LaTeX math commands to Unicode symbols
+/// A pipe command (stdin -> stdout) to convert LaTeX math commands to Unicode symbols
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 struct Cli {
