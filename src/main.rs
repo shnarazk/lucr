@@ -8,7 +8,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
-const TABLE: [(&str, &str); 240] = [
+const TABLE: [(&str, &str); 241] = [
     // italic alphabet
     ("MiA", "𝐴"),
     ("MiB", "𝐵"),
@@ -224,6 +224,7 @@ const TABLE: [(&str, &str); 240] = [
     ("r", "→"),
     ("d", "↓"),
     ("u", "↑"),
+    ("lr", "↔"),
     ("|->", "↦"),
     // unary operators
     ("all", "∀"),
