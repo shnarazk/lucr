@@ -8,7 +8,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
-const TABLE: [(&str, &str); 241] = [
+const TABLE: [(&str, &str); 242] = [
     // italic alphabet
     ("MiA", "𝐴"),
     ("MiB", "𝐵"),
@@ -261,6 +261,8 @@ const TABLE: [(&str, &str); 241] = [
     ("|", "∣"),
     ("cong", "≅"),
     ("div", "÷"),
+    // others
+    ("goal", "⊢"),
 ];
 
 /// A pipe command (stdin -> stdout) to convert LaTeX math commands to Unicode symbols
